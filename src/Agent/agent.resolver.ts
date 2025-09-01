@@ -30,4 +30,9 @@ export class AgentResolver {
   ) {
     return this.service.update(id, input);
   }
+
+  @Mutation(() => Boolean)
+  deleteAgent(@Args('id', { type: () => Int }) id: number) {
+    return this.service.remove(id);
+  }
 }

@@ -38,4 +38,16 @@ export class AgentService {
 
     return agent;
   }
+
+  async remove(id: number): Promise<boolean> {
+    const agent = await this.repo.findOne({ where: { id } });
+
+    if (!agent) {
+      throw new NotFoundException('Agent not found');
+    }
+
+    await this.repo.remove(agent);
+
+    return true;
+  }
 }
