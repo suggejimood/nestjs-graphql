@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    image: emlak-api:prod
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - SQLITE_PATH=/app/data/emlak.db
+    volumes:
+      - ./data:/app/data
