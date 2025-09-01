@@ -55,6 +55,10 @@ export class Listing {
   price: number;
 
   @Field(() => Agent)
-  @ManyToOne(() => Agent, (a) => a.listings, { eager: true, nullable: false })
+  @ManyToOne(() => Agent, (a) => a.listings, {
+    eager: true,
+    nullable: false,
+    onDelete: 'CASCADE',
+  })
   agent: Agent;
 }
