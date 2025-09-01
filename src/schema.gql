@@ -1,0 +1,75 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Agent {
+  id: ID!
+  name: String!
+  phone: String
+}
+
+input CreateAgentInput {
+  name: String!
+  phone: String
+}
+
+input CreateListingInput {
+  agentId: Int!
+  listingType: ListingType!
+  price: Float!
+  slug: String!
+  title: String!
+  type: PropertyType!
+}
+
+type Listing {
+  agent: Agent!
+  id: ID!
+  listingType: ListingType!
+  price: Float!
+  slug: String!
+  title: String!
+  type: PropertyType!
+}
+
+input ListingFilterInput {
+  listingType: ListingType
+  maxPrice: Float
+  minPrice: Float
+  titleContains: String
+  type: PropertyType
+}
+
+enum ListingType {
+  RENT
+  SALE
+}
+
+type Mutation {
+  createAgent(input: CreateAgentInput!): Agent!
+  createListing(input: CreateListingInput!): Listing!
+  deleteListing(id: Int!): Boolean!
+  updateListing(id: Int!, input: UpdateListingInput!): Listing!
+}
+
+enum PropertyType {
+  APARTMENT
+  HOUSE
+}
+
+type Query {
+  agent(id: Int!): Agent!
+  agents: [Agent!]!
+  listing(slug: String!): Listing
+  listings(filter: ListingFilterInput): [Listing!]!
+  ping: String!
+}
+
+input UpdateListingInput {
+  agentId: Int
+  listingType: ListingType
+  price: Float
+  slug: String
+  title: String
+  type: PropertyType
+}
