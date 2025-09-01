@@ -3,21 +3,33 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Agent } from './agent.entity';
 import { CreateAgentInput } from './dto/create-agent.input';
+import { UpdateAgentInput } from './dto/update-agent.input';
 
 @Injectable()
 export class AgentService {
   constructor(@InjectRepository(Agent) private repo: Repository<Agent>) {}
 
-  create(input: CreateAgentInput) {
-    const a = this.repo.create(input);
-    return this.repo.save(a);
+  create(input: CreateAgentInput): Promise<Agent> {
+    const agent = this.repo.create(input);
+
+    return this.repo.save(agent);
   }
 
-  findAll() {
+  async update(id: number, input: UpdateAgentInput) {
+    const agent = await this.repo.findOne({ where: { id } });
+    if (!agent) {
+      throw new NotFoundException('Agent not found');
+    }
+
+    Object.assign(agent, input);
+    return this.repo.save(agent);
+  }
+
+  findAll(): Promise<Agent[]> {
     return this.repo.find();
   }
 
-  async findById(id: number) {
+  async findById(id: number): Promise<Agent> {
     const agent = await this.repo.findOne({ where: { id } });
 
     if (!agent) {
