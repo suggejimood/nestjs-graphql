@@ -1,60 +1,67 @@
-# compiled output
-/dist
-/node_modules
-/build
+# === Node/NestJS ===
+node_modules/
+dist/
+build/
+.tmp/
+temp/
+.tmp-cache/
+
+# TypeScript
+*.tsbuildinfo
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
-pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 lerna-debug.log*
 
-# OS
+# Coverage & test outputs
+coverage/
+.nyc_output/
+junit.xml
+
+# Caches
+.eslintcache
+.cache/
+.parcel-cache/
+.sass-cache/
+
+# OS files
 .DS_Store
+Thumbs.db
 
-# Tests
-/coverage
-/.nyc_output
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
+# Editors/IDE
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.iml
 
-# dotenv environment variable files
+# Env (örnek dosyaları tut)
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
+.env.*
+!.env.example
+!.env.*.example
 
-# temp directory
-.temp
-.tmp
+# Docker - yerel veri klasörleri (varsa)
+docker-data/
+docker/**/data/
+docker/**/volumes/
 
-# Runtime data
-pids
+# GraphQL (code-first autoSchemaFile üretimi)
+schema.gql
+
+# TypeORM / DB artifaktları (ihtimale karşı)
+ormlog.log
+*.sqlite
+*.sqlite-journal
+
+# Misc
 *.pid
-*.seed
 *.pid.lock
-
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-#DB
-/data
-emlak.db
+*.swp
+*.swo
